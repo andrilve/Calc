@@ -23,7 +23,6 @@ public class App extends Application {
         Parent root = fxmlLoader.load(getClass().getResource("ui.fxml").openStream());
 
         Server server = new Server();
-        //Controller mController =
         ((Controller) fxmlLoader.getController()).setServer(server);
 
         primaryStage.setTitle("Calculator");

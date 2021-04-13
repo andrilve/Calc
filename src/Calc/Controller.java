@@ -7,6 +7,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.concurrent.locks.Condition;
+import java.lang.String;
 
 public class Controller {
     @FXML
@@ -32,23 +33,20 @@ public class Controller {
         String value = ((Button)actionEvent.getSource()).getText();
         output.setText(output.getText() + value);
 
-       try {
-            server.out(value);
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
+       outForServer(value);
     }
 
     @FXML
     public void processOperator(ActionEvent actionEvent ) {
 
         String value = ((Button)actionEvent.getSource()).getText();
-        System.out.println("proverka" + !operator.isEmpty());
+        //System.out.println("proverka" + value);
          if(!"=".equals(value)){
             //if (!operator.isEmpty()) {
                 //return;
             //}
             operator = value;
+            outForServer(operator);
             number1 = Long.parseLong(output.getText());
             output.setText("");
         }
@@ -60,7 +58,14 @@ public class Controller {
             output.setText(String.valueOf(model.calculate(number1, Long.parseLong(output.getText()), operator)));
             operator = "";
             start = true;
-            //calculator
+        }
+    }
+
+    private void outForServer(String textOut){
+        try {
+            server.out(textOut);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
