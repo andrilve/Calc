@@ -17,11 +17,9 @@ public class Server {
     }
 
     public void out(String value) throws IOException {
-
         try {
             while(!socket.isOutputShutdown()){
                 DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-                System.out.println("I alive");
                 out.writeUTF(value);
                 out.flush();
                 break;
@@ -31,4 +29,7 @@ public class Server {
         }
     }
 
+    public Socket getSocket(){
+        return socket;
+    }
 }

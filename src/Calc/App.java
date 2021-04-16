@@ -24,6 +24,8 @@ public class App extends Application {
 
         Server server = new Server();
         ((Controller) fxmlLoader.getController()).setServer(server);
+        Thread thread = new ThreadIn(server, (Controller) fxmlLoader.getController());
+        thread.start();
 
         primaryStage.setTitle("Calculator");
         primaryStage.setScene(new Scene(root));

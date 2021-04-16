@@ -12,6 +12,8 @@ import java.lang.String;
 public class Controller {
     @FXML
     private Text output;
+    @FXML
+    private Text output2;
 
     private long number1;
     private String operator = "";
@@ -28,6 +30,7 @@ public class Controller {
     public void processNumpad(ActionEvent actionEvent ) {
         if (start) {
             output.setText("");
+            output2.setText("");
             start = false;
         }
         String value = ((Button)actionEvent.getSource()).getText();
@@ -67,5 +70,9 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setOutput2(String value){
+        output2.setText(value);
     }
 }
