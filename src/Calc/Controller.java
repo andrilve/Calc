@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
-import java.util.concurrent.locks.Condition;
 import java.lang.String;
 
 public class Controller {
@@ -35,7 +34,7 @@ public class Controller {
         String value = ((Button)actionEvent.getSource()).getText();
         output.setText(output.getText() + value);
 
-        //Передаем значения с сервера
+        //Передаем значения на сервер
        outForServer(value);
     }
 
@@ -43,22 +42,15 @@ public class Controller {
     public void processOperator(ActionEvent actionEvent ) {
 
         String value = ((Button)actionEvent.getSource()).getText();
-        //System.out.println("proverka" + value);
          if(!"=".equals(value)){
-            //if (!operator.isEmpty()) {
-                //return;
-            //}
             operator = value;
             outForServer(operator);
-            number1 = Long.parseLong(output.getText());
             output.setText("");
         }
         else {
             if (operator.isEmpty()) {
                 return;
             }
-
-            //output.setText(String.valueOf(model.calculate(number1, Long.parseLong(output.getText()), operator)));
             operator = "";
             start = true;
         }

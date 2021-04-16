@@ -22,7 +22,7 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(getClass().getResource("ui.fxml").openStream());
 
-        ..
+        //Создаем отдельный поток для связи с сервером
         Server server = new Server();
         ((Controller) fxmlLoader.getController()).setServer(server);
         Thread thread = new ThreadIn(server, (Controller) fxmlLoader.getController());
@@ -35,9 +35,11 @@ public class App extends Application {
 
     public static void main( String[] args ) throws IOException {
 
+        //+Не знаю что делает этот код, нужно загуглить!!!
         Lock lock = new ReentrantLock();
         Condition cv = lock.newCondition();
         StaticAccess.sCondition = cv;
+        //Не знаю что делает этот код, нужно загуглить!!!
 
         launch(args);
     }
