@@ -22,6 +22,7 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(getClass().getResource("ui.fxml").openStream());
 
+        ..
         Server server = new Server();
         ((Controller) fxmlLoader.getController()).setServer(server);
         Thread thread = new ThreadIn(server, (Controller) fxmlLoader.getController());
@@ -38,17 +39,6 @@ public class App extends Application {
         Condition cv = lock.newCondition();
         StaticAccess.sCondition = cv;
 
-        //Server server = new Server();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello frome thread");
-            }
-        }).start();
-
         launch(args);
     }
-
-
 }

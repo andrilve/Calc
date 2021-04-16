@@ -18,7 +18,6 @@ public class Controller {
     private long number1;
     private String operator = "";
     private boolean start = true;
-    private Model model = new Calc.Model();
 
     private Server server = null;
 
@@ -36,6 +35,7 @@ public class Controller {
         String value = ((Button)actionEvent.getSource()).getText();
         output.setText(output.getText() + value);
 
+        //Передаем значения с сервера
        outForServer(value);
     }
 
@@ -58,7 +58,7 @@ public class Controller {
                 return;
             }
 
-            output.setText(String.valueOf(model.calculate(number1, Long.parseLong(output.getText()), operator)));
+            //output.setText(String.valueOf(model.calculate(number1, Long.parseLong(output.getText()), operator)));
             operator = "";
             start = true;
         }
