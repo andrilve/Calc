@@ -50,4 +50,11 @@
         <Button text ="+" prefWidth="50" font="$FONT" onAction="#processOperator"/>
     </HBox>
 
+    <HBox spacing="10" alignment="CENTER">
+        <Button text = "+/-"    prefWidth = "50" font = "$FONT" onAction="#processOperator"/>
+        <Button text = "0"      prefWidth = "50" font = "$FONT" onAction="#processNumpad"/>
+        <Button text = ","      prefWidth = "50" font = "$FONT" onAction="#processOperator"/>
+        <Button text = "="      prefWidth = "50" font = "$FONT" onAction="#processOperator"/>
+    </HBox>
+
 </VBox>

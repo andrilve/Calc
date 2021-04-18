@@ -42,18 +42,8 @@ public class Controller {
     public void processOperator(ActionEvent actionEvent ) {
 
         String value = ((Button)actionEvent.getSource()).getText();
-         if(!"=".equals(value)){
-            operator = value;
-            outForServer(operator);
-            output.setText("");
-        }
-        else {
-            if (operator.isEmpty()) {
-                return;
-            }
-            operator = "";
-            start = true;
-        }
+        outForServer(value);
+        output.setText(output.getText() + value);
     }
 
     private void outForServer(String textOut){
