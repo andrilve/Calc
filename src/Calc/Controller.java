@@ -14,9 +14,14 @@ public class Controller {
     @FXML
     private Text output2;
 
-    private long number1;
-    private String operator = "";
-    private boolean start = true;
+    private boolean start = false;
+
+    private String squareSign = "^2";
+    private String reset = "Reset";
+    private String equal = "=";
+
+    private String varNumb = "";
+    private String varSign = "";
 
     private Server server = null;
 
@@ -30,20 +35,56 @@ public class Controller {
             output.setText("");
             output2.setText("");
             start = false;
+            outForServer(reset);
         }
         String value = ((Button)actionEvent.getSource()).getText();
+        if (!varSign.equals("")){
+            outForServer(varSign);
+            varSign = "";
+        }
+        varNumb = varNumb + value;
         output.setText(output.getText() + value);
 
         //Передаем значения на сервер
-       outForServer(value);
+       //outForServer(value);
     }
 
     @FXML
     public void processOperator(ActionEvent actionEvent ) {
-
+        if (start) {
+            output.setText("");
+            output2.setText("");
+            start = false;
+            outForServer(reset);
+        }
         String value = ((Button)actionEvent.getSource()).getText();
-        outForServer(value);
+        if (!varNumb.equals("")){
+            outForServer(varNumb);
+            varNumb = "";
+        }
+        varSign = value;
+        if (value.equals(equal)){
+            start = true;
+            outForServer(value);
+            varNumb = "";
+            varSign = "";
+        }
+
         output.setText(output.getText() + value);
+        //outForServer(value);
+    }
+
+    @FXML
+    public void processSquare(ActionEvent actionEvent ) {
+        output.setText(output.getText() + squareSign);
+        outForServer(squareSign);
+    }
+
+    @FXML
+    public void processReset(ActionEvent actionEvent ) {
+        output.setText("");
+        output2.setText("");
+        outForServer(reset);
     }
 
     private void outForServer(String textOut){
